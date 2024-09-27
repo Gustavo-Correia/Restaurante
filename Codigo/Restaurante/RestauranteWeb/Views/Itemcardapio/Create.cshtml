@@ -1,55 +1,54 @@
 ﻿@model RestauranteWeb.Models.ItemcardapioViewModel
 
-<h4>ItemcardapioViewModel</h4>
+<h2 class="text-center">Cadastro de Item do Cardápio</h2>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Preco" class="control-label"></label>
-                <input asp-for="Preco" class="form-control" />
-                <span asp-validation-for="Preco" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Detalhes" class="control-label"></label>
-                <input asp-for="Detalhes" class="form-control" />
-                <span asp-validation-for="Detalhes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Ativo" class="control-label"></label>
-                <input asp-for="Ativo" class="form-control" />
-                <span asp-validation-for="Ativo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Disponivel" class="control-label"></label>
-                <input asp-for="Disponivel" class="form-control" />
-                <span asp-validation-for="Disponivel" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdRestaurante" class="control-label"></label>
-                <input asp-for="IdRestaurante" class="form-control" />
-                <span asp-validation-for="IdRestaurante" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Create" class="form-restaurante">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" placeholder="Nome do Item" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Preco" class="control-label"></label>
+                    <input asp-for="Preco" class="form-control" placeholder="Preço" />
+                    <span asp-validation-for="Preco" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Detalhes" class="control-label"></label>
+                    <input asp-for="Detalhes" class="form-control" placeholder="Detalhes" />
+                    <span asp-validation-for="Detalhes" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Ativo" class="control-label"></label>
+                    <input asp-for="Ativo" class="form-control" placeholder="Ativo" />
+                    <span asp-validation-for="Ativo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Disponivel" class="control-label"></label>
+                    <input asp-for="Disponivel" class="form-control" placeholder="Disponível" />
+                    <span asp-validation-for="Disponivel" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IdRestaurante" class="control-label"></label>
+                    <input asp-for="IdRestaurante" class="form-control" placeholder="ID do Restaurante" />
+                    <span asp-validation-for="IdRestaurante" class="text-danger"></span>
+                </div>
+
+                <div class="form-group text-center">
+                    <input type="submit" value="Cadastrar" class="btn btn-primary btn-block" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="text-center mt-3">
+    <a asp-action="Index" class="btn btn-link">Voltar para Lista</a>
 </div>
 
 @section Scripts {

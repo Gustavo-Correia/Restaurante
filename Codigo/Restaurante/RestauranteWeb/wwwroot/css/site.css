@@ -1,22 +1,170 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* Estilos gerais da página */
 body {
-  margin-bottom: 60px;
+    font-family: 'Arial', sans-serif; /* Definindo a fonte padrão */
+    background-color: #333; /* Fundo escuro para toda a página */
+    color: #f0f0f0; /* Texto claro em toda a página */
+    margin: 0; /* Removendo margens da página */
+    padding: 0; /* Removendo padding da página */
+}
+
+/* Estilos para o cabeçalho (header) */
+header {
+    background-color: #333; /* Fundo escuro para o header */
+    padding: 20px 0; /* Espaçamento no topo e embaixo do header */
+    color: white; /* Cor do texto no header */
+}
+
+    header .navbar-brand {
+        font-size: 2rem; /* Tamanho da fonte do nome da marca */
+        color: #f0f0f0; /* Cor clara para o nome da marca */
+        font-weight: bold; /* Deixando o texto em negrito */
+    }
+
+    header .navbar-nav .nav-link {
+        color: #00bfff; /* Cor azul claro para os links no menu de navegação */
+        padding: 10px; /* Espaçamento interno dos links */
+        border: 1px solid #00bfff; /* Bordas azul claro ao redor dos links */
+        border-radius: 5px; /* Bordas arredondadas nos links */
+        margin: 0 5px; /* Espaçamento lateral entre os links */
+    }
+
+        header .navbar-nav .nav-link:hover {
+            background-color: #00bfff; /* Cor de fundo dos links ao passar o mouse */
+            color: white; /* Cor do texto ao passar o mouse sobre o link */
+        }
+
+/* Estilos para o campo de pesquisa */
+input[type="text"] {
+    width: 100%; /* Largura total para o campo de pesquisa */
+    padding: 10px; /* Espaçamento interno no campo de pesquisa */
+    border: 1px solid #ccc; /* Bordas cinzas claras */
+    border-radius: 5px; /* Bordas arredondadas */
+    margin-top: 15px; /* Espaçamento acima do campo de pesquisa */
+}
+
+/* Estilos para o botão de pesquisa */
+button[type="submit"] {
+    background-color: #00bfff; /* Fundo azul claro para o botão */
+    color: white; /* Texto branco no botão */
+    border: none; /* Removendo bordas padrão do botão */
+    padding: 10px 20px; /* Espaçamento interno no botão */
+    border-radius: 5px; /* Bordas arredondadas no botão */
+    cursor: pointer; /* Cursor de "mão" ao passar sobre o botão */
+    margin-left: 10px; /* Espaçamento à esquerda do botão */
+}
+
+    button[type="submit"]:hover {
+        background-color: #007bbf; /* Fundo azul escuro ao passar o mouse */
+    }
+
+/* Estilos para o formulário */
+.form-restaurante {
+    background-color: #ffffff; /* Fundo branco para o formulário */
+    padding: 20px; /* Espaçamento interno no formulário */
+    border-radius: 8px; /* Bordas arredondadas no formulário */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave ao redor do formulário */
+    margin-top: 30px; /* Espaçamento superior ao formulário */
+    color: #000000; /* Cor preta para o texto dentro do formulário */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Espaçamento inferior entre os campos do formulário */
+}
+
+.form-control {
+    background-color: #ffffff; /* Fundo branco para os campos de entrada */
+    color: #333; /* Cor escura para o texto dentro dos campos */
+    border: 1px solid #ced4da; /* Bordas cinzas claras nos campos */
+    border-radius: 4px; /* Bordas arredondadas nos campos */
+    padding: 10px; /* Espaçamento interno nos campos */
+}
+
+    .form-control:focus {
+        border-color: #00bfff; /* Cor azul claro nas bordas ao focar no campo */
+        box-shadow: 0 0 0 0.1rem rgba(0, 191, 255, 0.5); /* Sombra suave ao redor do campo focado */
+    }
+
+/* Estilos para links e tabelas */
+a {
+    color: #00bfff; /* Azul claro para os links */
+}
+
+    a:hover {
+        text-decoration: underline; /* Sublinhado ao passar o mouse nos links */
+        color: #007bbf; /* Azul escuro ao passar o mouse */
+    }
+
+/* Estilos para as tabelas */
+table {
+    width: 100%; /* Largura total da tabela */
+    border-collapse: collapse; /* Remover espaços entre as células */
+}
+
+th, td {
+    padding: 12px; /* Espaçamento interno nas células da tabela */
+    text-align: left; /* Texto alinhado à esquerda */
+    border-bottom: 1px solid #ddd; /* Linha inferior nas células */
+    color: #f0f0f0; /* Texto claro nas células */
+}
+
+th {
+    background-color: #333; /* Fundo escuro para o cabeçalho da tabela */
+    color: white; /* Texto azul claro no cabeçalho */
+}
+
+td {
+    background-color: #444; /* Fundo cinza escuro para as células da tabela */
+}
+
+/* Estilos para os botões */
+.btn-primary {
+    background-color: #00bfff; /* Fundo azul claro para o botão principal */
+    border: none; /* Removendo bordas padrão do botão */
+    padding: 10px 20px; /* Espaçamento interno no botão */
+    border-radius: 5px; /* Bordas arredondadas no botão */
+    font-size: 1rem; /* Tamanho da fonte do botão */
+    color: white; /* Texto branco no botão */
+    cursor: pointer; /* Cursor de "mão" ao passar sobre o botão */
+    width: 100%; /* Largura total do botão */
+}
+
+    .btn-primary:hover {
+        background-color: #007bbf; /* Fundo azul escuro ao passar o mouse */
+    }
+
+.btn-link {
+    color: #00bfff; /* Azul claro para os links */
+    text-decoration: none; /* Removendo o sublinhado padrão dos links */
+}
+
+    .btn-link:hover {
+        text-decoration: underline; /* Adicionando sublinhado ao passar o mouse */
+    }
+
+/* Estilos para o rodapé (footer) */
+footer {
+    background-color: #1f1f1f; /* Fundo escuro para o rodapé */
+    color: white; /* Texto branco no rodapé */
+    padding: 15px 0; /* Espaçamento interno no rodapé */
+    text-align: center; /* Texto centralizado no rodapé */
+    margin-top: 50px; /* Espaçamento superior ao rodapé */
+}
+
+    footer a {
+        color: #00bfff; /* Azul claro para os links no rodapé */
+    }
+
+        footer a:hover {
+            color: #007bbf; /* Azul escuro ao passar o mouse nos links */
+        }
+
+/* Estilos de responsividade */
+@media (max-width: 768px) {
+    header .navbar-brand {
+        font-size: 1.5rem; /* Reduzindo o tamanho da marca em telas menores */
+    }
+
+    .form-restaurante {
+        margin: 15px 0; /* Reduzindo o espaçamento do formulário em telas menores */
+    }
 }
