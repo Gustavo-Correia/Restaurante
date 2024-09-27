@@ -6,13 +6,13 @@ using RestauranteWeb.Models;
 
 namespace RestauranteWeb.Controllers
 {
-    public class GarcomControler : Controller
+    public class GarcomController : Controller
     {
         private readonly IGarcomService garcomService;
         private readonly IMapper mapper;
 
 
-        public GarcomControler(IGarcomService garcomService, IMapper mapper)
+        public GarcomController(IGarcomService garcomService, IMapper mapper)
         {
             this.garcomService = garcomService;
             this.mapper = mapper;
