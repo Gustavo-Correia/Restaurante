@@ -1,3 +1,8 @@
+using Core;
+using Core.Service;
+using Microsoft.EntityFrameworkCore;
+using Service;
+
 namespace RestauranteWeb
 {
     public class Program
@@ -8,7 +13,7 @@ namespace RestauranteWeb
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+           
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

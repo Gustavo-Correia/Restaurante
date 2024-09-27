@@ -1,6 +1,5 @@
 ﻿using Core.DTO;
 
-
 namespace Core.Service
 {
     public interface IGarcomService

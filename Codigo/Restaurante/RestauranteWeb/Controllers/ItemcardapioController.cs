@@ -1,83 +1,101 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Core;
+using Core.Service;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RestauranteWeb.Models;
+using Service;
 
 namespace RestauranteWeb.Controllers
 {
     public class ItemcardapioController : Controller
     {
+        private readonly IItemcardapioService itemcardapioService;
+        private readonly IMapper mapper;
+
+        public int IdRestaurante { get; private set; }
+
+        public ItemcardapioController(IItemcardapioService itemcardapioService, IMapper mapper)
+        {
+            this.itemcardapioService = itemcardapioService;
+            this.mapper = mapper;
+        }
+
         // GET: ItemcardapioController
         public ActionResult Index()
         {
-            return View();
+            var listaItemcardapio = itemcardapioService.GetAll();
+            var ItemscardapioViewModel = mapper.Map<List<ItemcardapioViewModel>>(listaItemcardapio);
+            return View(ItemscardapioViewModel);
         }
 
         // GET: ItemcardapioController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(uint id)
         {
-            return View();
+            var itemcardapio = itemcardapioService.Get(id);
+            var ItemscardapioViewModel = mapper.Map<ItemcardapioViewModel>(itemcardapio);
+            return View(ItemscardapioViewModel);
         }
 
         // GET: ItemcardapioController/Create
         public ActionResult Create()
         {
-            return View();
+            var Itemcardapioview = new ItemcardapioViewModel
+            {
+                IdRestaurante = 1
+            };
+            return View(Itemcardapioview);
         }
 
         // POST: ItemcardapioController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(ItemcardapioViewModel itemcardapioViewModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                var itemcardapio = mapper.Map<Itemcardapio>(itemcardapioViewModel);
+                itemcardapioService.Create(itemcardapio);
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: ItemcardapioController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(uint id)
         {
-            return View();
+            var itemcardapio = itemcardapioService.Get(id);
+            var itemcardapioViewModel = mapper.Map<ItemcardapioViewModel>(itemcardapio);
+            return View(itemcardapioViewModel);
         }
 
         // POST: ItemcardapioController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(uint id, ItemcardapioViewModel itemcardapioViewModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                var itemcardapio = mapper.Map<Itemcardapio>(itemcardapioViewModel);
+                itemcardapioService.Edit(itemcardapio);
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: ItemcardapioController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(uint id)
         {
-            return View();
+            var itemcardapio = itemcardapioService.Get(id);
+            var itemcardapioViewModel = mapper.Map<ItemcardapioViewModel>(itemcardapio);
+            return View(itemcardapioViewModel);
         }
 
         // POST: ItemcardapioController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, ItemcardapioViewModel itemcardapioViewModel)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            itemcardapioService.Delete(itemcardapioViewModel.Id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

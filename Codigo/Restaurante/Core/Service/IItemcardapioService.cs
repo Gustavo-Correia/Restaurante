@@ -9,8 +9,8 @@ namespace Core.Service
 {
     public interface IItemcardapioService
     {
-        uint Create(Itemcardapio garcom);
-        void Edit(Itemcardapio garcom);
+        uint Create(Itemcardapio itemcardapio);
+        void Edit(Itemcardapio itemcardapio);
         void Delete(uint id);
         Itemcardapio? Get(uint id);
         IEnumerable<Itemcardapio> GetAll();

@@ -1,15 +1,17 @@
 ﻿
+using Core;
 using Core.DTO;
+using Core.Service;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace Core.Service
+namespace Service
 {
     public class GarcomService : IGarcomService
     {
         private readonly RestauranteContext context;
-        public GarcomService(RestauranteContext context) 
-        { 
+        public GarcomService(RestauranteContext context)
+        {
             this.context = context;
         }
 
@@ -20,28 +22,30 @@ namespace Core.Service
             return garcom.Id;
         }
 
+
+
         public void Delete(uint id)
         {
-            var garcon = context.Garcoms.Find(id);
+            var garcom = context.Garcoms.Find(id);
 
-            if(garcon != null)
+            if (garcom != null)
             {
-                context.Remove(garcon);
+                context.Remove(garcom);
                 context.SaveChanges();
             }
-         
+
         }
 
         public void Edit(Garcom garcom)
         {
             var existenciaGarcom = context.Garcoms.Find(garcom.Id);
-            if(existenciaGarcom == null)
+            if (existenciaGarcom == null)
             {
-                throw new Exception("Garcom nao encontrado");  
+                throw new Exception("Garcom nao encontrado");
             }
 
             context.Update(existenciaGarcom);
-            
+
         }
 
         public Garcom? Get(uint id)
@@ -65,6 +69,16 @@ namespace Core.Service
                             Nome = garcom.Nome
                         };
             return query;
+        }
+
+        Garcom? IGarcomService.Get(uint id)
+        {
+            return context.Garcoms.Find(id);
+        }
+
+        IEnumerable<Garcom> IGarcomService.GetAll()
+        {
+            return context.Garcoms.AsNoTracking().ToList();
         }
     }
 }
