@@ -13,6 +13,16 @@ namespace RestauranteWeb
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddTransient<IGarcomService, GarcomService>();
+            builder.Services.AddTransient<IItemcardapioService, ItemcardapioService>();
+            
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            builder.Services.AddDbContext<RestauranteContext>(
+                options => options.UseMySQL(builder.Configuration.GetConnectionString("RestauranteDatabase")));
+
+            // Add services to the container.
+            builder.Services.AddControllersWithViews();
            
             var app = builder.Build();
 

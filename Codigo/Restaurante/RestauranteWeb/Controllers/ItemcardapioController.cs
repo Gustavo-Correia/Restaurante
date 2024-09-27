@@ -13,7 +13,7 @@ namespace RestauranteWeb.Controllers
         private readonly IItemcardapioService itemcardapioService;
         private readonly IMapper mapper;
 
-        public int IdRestaurante { get; private set; }
+        
 
         public ItemcardapioController(IItemcardapioService itemcardapioService, IMapper mapper)
         {
