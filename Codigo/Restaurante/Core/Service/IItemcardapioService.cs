@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace Core.Service
         void Edit(Itemcardapio garcom);
         void Delete(uint id);
         Itemcardapio? Get(uint id);
-        IEnumerable<Garcom> GetAll();
-        IEnumerable<Itemcardapio> GetByNome(string nome);
+        IEnumerable<Itemcardapio> GetAll();
+        IEnumerable<ItemcardapioDto> GetByNome(string nome);
     }
 }

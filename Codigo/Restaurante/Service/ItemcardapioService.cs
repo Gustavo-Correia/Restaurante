@@ -67,8 +67,7 @@ namespace Service
                         {
                             Id = Itemcardapio.Id,
                             Nome = Itemcardapio.Nome,
-                            Ativo = Itemcardapio.Ativo,
-                            Disponivel = Itemcardapio.Disponivel,
+                            
                         };
             return query;
         }

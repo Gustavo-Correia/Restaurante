@@ -11,10 +11,6 @@ namespace Core.DTO
         public uint Id { get; set; }
         public string? Nome { get; set; }
 
-        public sbyte Ativo { get; set; }
-
-        public string Disponivel { get; set; } = null!;
-
-        public uint IdRestaurante { get; set; }
+      
     }
 }
