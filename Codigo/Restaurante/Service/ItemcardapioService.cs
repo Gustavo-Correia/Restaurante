@@ -39,15 +39,13 @@ namespace Service
 
         public void Edit(Itemcardapio itemcardapio)
         {
-            var existenciacardapio = context.Itemcardapios.Find(itemcardapio.Id);
-            if (existenciacardapio == null)
-            {
-                throw new Exception("Garcom nao encontrado");
-            }
 
-            context.Update(existenciacardapio);
+            context.Update(itemcardapio);
+            context.SaveChanges();
 
         }
+
+        
 
         public Itemcardapio? Get(uint id)
         {

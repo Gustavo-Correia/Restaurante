@@ -7,7 +7,7 @@
     {
         [Required]
         [Key]
-        public uint Id { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "O CNPJ do restaurante deve ser preenchido obrigatoriamente")]
         [StringLength(14, MinimumLength = 14, ErrorMessage = "O CNPJ deve ter exatamente 14 caracteres")]

@@ -29,7 +29,7 @@ namespace Service
             return restaurante.Id;
         }
 
-        public void Delete(uint id)
+        public void Delete(int id)
         {
             var restaurante = context.Restaurantes.Find(id);
             if (restaurante != null)
@@ -47,7 +47,7 @@ namespace Service
            
         }
 
-        public Restaurante? Get(uint id)
+        public Restaurante? Get(int id)
         {
             return context.Restaurantes.Find(id);
         }

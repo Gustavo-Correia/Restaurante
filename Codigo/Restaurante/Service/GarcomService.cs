@@ -38,13 +38,9 @@ namespace Service
 
         public void Edit(Garcom garcom)
         {
-            var existenciaGarcom = context.Garcoms.Find(garcom.Id);
-            if (existenciaGarcom == null)
-            {
-                throw new Exception("Garcom nao encontrado");
-            }
 
-            context.Update(existenciaGarcom);
+            context.Update(garcom);
+            context.SaveChanges();
 
         }
 
