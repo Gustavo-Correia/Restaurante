@@ -29,7 +29,7 @@ namespace RestauranteWeb.Controllers
         }
 
         // GET: RestauranteController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(uint id)
         {
             var restaurante = restauranteService.Get(id);
             RestauranteViewModel restauranteViewModel = mapper.Map<RestauranteViewModel>(restaurante);
@@ -56,7 +56,7 @@ namespace RestauranteWeb.Controllers
         }
 
         // GET: RestauranteController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(uint id)
         {
             var restaurante = restauranteService.Get(id);
             RestauranteViewModel restauranteViewModel = mapper.Map<RestauranteViewModel>(restaurante);
@@ -77,7 +77,7 @@ namespace RestauranteWeb.Controllers
         }
 
         // GET: RestauranteController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(uint id)
         {
             var restaurante = restauranteService.Get(id);
             RestauranteViewModel restauranteViewModel = mapper.Map<RestauranteViewModel>(restaurante);
@@ -87,7 +87,7 @@ namespace RestauranteWeb.Controllers
         // POST: RestauranteController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, RestauranteViewModel restauranteViewModel)
+        public ActionResult Delete(uint id, RestauranteViewModel restauranteViewModel)
         {
             restauranteService.Delete(id);
             return RedirectToAction(nameof(Index));
