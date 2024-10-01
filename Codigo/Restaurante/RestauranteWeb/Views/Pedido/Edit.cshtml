@@ -1,0 +1,57 @@
+﻿@model RestauranteWeb.Models.PedidoViewModel
+
+<h4>PedidoViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataHoraSolicitacao" class="control-label"></label>
+                <input asp-for="DataHoraSolicitacao" class="form-control" />
+                <span asp-validation-for="DataHoraSolicitacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataHoraAtendimento" class="control-label"></label>
+                <input asp-for="DataHoraAtendimento" class="form-control" />
+                <span asp-validation-for="DataHoraAtendimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdAtendimento" class="control-label"></label>
+                <input asp-for="IdAtendimento" class="form-control" />
+                <span asp-validation-for="IdAtendimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdGarcom" class="control-label"></label>
+                <input asp-for="IdGarcom" class="form-control" />
+                <span asp-validation-for="IdGarcom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PedidoDetalhes" class="control-label"></label>
+                <input asp-for="PedidoDetalhes" class="form-control" />
+                <span asp-validation-for="PedidoDetalhes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

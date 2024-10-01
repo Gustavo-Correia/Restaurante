@@ -16,7 +16,9 @@ namespace RestauranteWeb
             builder.Services.AddTransient<IGarcomService, GarcomService>();
             builder.Services.AddTransient<IItemcardapioService, ItemcardapioService>();
             builder.Services.AddTransient<IRestauranteService, RestauranteService>();
-            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+			builder.Services.AddTransient<IPedidoService, PedidoService>();
+			builder.Services.AddTransient<IPedidoitemcardapioService, PedidoitemcardapioService>();
+			builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddDbContext<RestauranteContext>(
                 options => options.UseMySQL(builder.Configuration.GetConnectionString("RestauranteDatabase")));
 
