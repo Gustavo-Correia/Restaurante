@@ -17,7 +17,9 @@ namespace RestauranteWeb
             builder.Services.AddTransient<IItemcardapioService, ItemcardapioService>();
             builder.Services.AddTransient<IRestauranteService, RestauranteService>();
 			builder.Services.AddTransient<IPedidoService, PedidoService>();
-			builder.Services.AddTransient<IPedidoitemcardapioService, PedidoitemcardapioService>();
+            builder.Services.AddTransient<IAtendimentoService, AtendimentoService>();
+            builder.Services.AddTransient<IMesaService, MesaService>();
+            builder.Services.AddTransient<IPedidoitemcardapioService, PedidoitemcardapioService>();
 			builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddDbContext<RestauranteContext>(
                 options => options.UseMySQL(builder.Configuration.GetConnectionString("RestauranteDatabase")));
