@@ -6,8 +6,8 @@
     <title>@ViewData["Title"] - RestauranteWeb</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+   
     <!-- Referência ao CSS específico do restaurante -->
-    <link rel="stylesheet" href="~/css/restaurante.css" asp-append-version="true" />
 </head>
 <body>
     <header>
@@ -35,6 +35,18 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="ItemCardapio" asp-action="Index">Itens do Cardápio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="pedido" asp-action="Index">Pedidos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="pedidoitemcardapio" asp-action="Index">Pedido item cardapio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Mesa" asp-action="Index">Mesas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Atendimento" asp-action="Index">Atendimentos</a>
                         </li>
                     </ul>
                 </div>

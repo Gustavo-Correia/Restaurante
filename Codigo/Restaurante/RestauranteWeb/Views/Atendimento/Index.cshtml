@@ -1,53 +1,81 @@
 ﻿@model IEnumerable<RestauranteWeb.Models.AtendimentoViewModel>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Identificacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdRestaurante)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeRestaurante)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Identificacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdRestaurante)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeRestaurante)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+@{
+    ViewData["Title"] = "Lista de Atendimentos";
 }
-    </tbody>
-</table>
+<div class="index-container">
+    <div class="index-header">
+        <h2 class="index-title">Lista de Mesas</h2>
+        <div class="index-actions">
+            <a asp-action="Create" class="btn btn-create">Cadastrar</a>
+        </div>
+    </div>
+
+    <table class="table index-table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataHoraInicio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalConta)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalServico)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalDesconto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NomeRestaurante)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Total)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdMesa)
+                </th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataHoraInicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalConta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalServico)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalDesconto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeRestaurante)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdMesa)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

@@ -1,6 +1,7 @@
 using Core;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 using Service;
 
 namespace RestauranteWeb
@@ -9,6 +10,7 @@ namespace RestauranteWeb
     {
         public static void Main(string[] args)
         {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -25,7 +27,7 @@ namespace RestauranteWeb
                 options => options.UseMySQL(builder.Configuration.GetConnectionString("RestauranteDatabase")));
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            //builder.Services.AddControllersWithViews();
            
             var app = builder.Build();
 
@@ -37,6 +39,8 @@ namespace RestauranteWeb
                 app.UseHsts();
             }
 
+
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

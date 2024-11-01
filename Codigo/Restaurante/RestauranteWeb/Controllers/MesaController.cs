@@ -3,6 +3,7 @@ using Core;
 using Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RestauranteWeb.Models;
 
 namespace RestauranteWeb.Controllers
@@ -11,26 +12,26 @@ namespace RestauranteWeb.Controllers
     {
         private readonly IMesaService mesa;
         private readonly IMapper mapper;
+        private readonly IRestauranteService restauranteService;
 
-        public MesaController(IMesaService mesa, IMapper mapper)
+        public MesaController(IMesaService mesa, IMapper mapper, IRestauranteService restauranteService)
         {
             this.mesa = mesa;
             this.mapper = mapper;
+            this.restauranteService = restauranteService;
         }
         // GET: MesaController
         public ActionResult Index()
         {
-            var listaMesa = mesa.GetAll();
+            var listaMesa = mesa.GetDtos();
             var MesaViewModel = mapper.Map<List<MesaViewModel>>(listaMesa);
             return View(MesaViewModel);
         }
         // GET: MesaController/Create
         public ActionResult Create()
         {
-            var Mesaview = new MesaViewModel
-            {
-                Id = 1
-            };
+            var Mesaview = new MesaViewModel();
+            var Restaurantes = restauranteService.GetDtos();
             return View(Mesaview);
         }
         // POST: MesaController/Create
@@ -47,32 +48,35 @@ namespace RestauranteWeb.Controllers
         }
 
         // GET: MesaController/Edit/5
-        public ActionResult Edit(uint id)
+        public ActionResult Edit(int id)
         {
             var Mesa = mesa.Get(id);
             var MesaViewModel = mapper.Map<MesaViewModel>(Mesa);
+            var Restaurantes = restauranteService.GetDtos();
+            MesaViewModel.Restaurantes = new SelectList(Restaurantes, "Id", "Nome", Mesa.IdRestaurante);
             return View(MesaViewModel);
         }
 
         // POST:MesaController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(uint id, MesaViewModel mesaViewModel)
+        public ActionResult Edit(int id, MesaViewModel mesaViewModel)
         {
             if (ModelState.IsValid)
             {
                 var mesa1 = mapper.Map<Mesa>(mesaViewModel);
                 mesa.Edit(mesa1);
             }
+
             return RedirectToAction(nameof(Index));
         }
 
         // GET: MesaController/Delete/5
-        public ActionResult Delete(uint id)
+        public ActionResult Delete(int id)
         {
-            var Mesa = mesa.Get(id);
-            var mesaViewModel = mapper.Map<MesaViewModel>(mesa);
-            return View(mesaViewModel);
+            var Mesa = mesa.GetById(id).FirstOrDefault();
+            var mesaViewModel1 = mapper.Map<MesaViewModel>(Mesa);
+            return View(mesaViewModel1);
         }
 
         // POST: MesaController/Delete/5

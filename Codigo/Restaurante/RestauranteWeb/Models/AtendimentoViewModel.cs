@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace RestauranteWeb.Models
@@ -6,28 +7,35 @@ namespace RestauranteWeb.Models
     public class AtendimentoViewModel
     {
         [Key]
-        [Required(ErrorMessage = "O ID do atendimento é obrigatório.")]
         public uint Id { get; set; }
 
-        [Required(ErrorMessage = "A identificação é obrigatória.")]
-        public string Identificacao { get; set; } = null!;
+        [Display(Name = "Horário de abertura")]
+        public DateTime DataHoraInicio { get; set; } = DateTime.Now;
 
-        [Required(ErrorMessage = "O ID do restaurante é obrigatório.")]
-        public uint IdRestaurante { get; set; }
+        [Display(Name = "Horário de fechamento")]
+        public DateTime? DataHoraFim { get; set; }
 
-        [Required(ErrorMessage = "O nome do restaurante é obrigatório.")]
-        public string NomeRestaurante { get; set; } = null!;
+        [Display(Name = "Conta")]
+        public decimal TotalConta { get; set; }
 
-        /// <summary>
-        /// Status do atendimento:
-        /// S - Solicitado
-        /// C - Cancelado
-        /// A - Atendido
-        /// </summary>
-        [Required(ErrorMessage = "O status do atendimento é obrigatório.")]
-        [StringLength(1, ErrorMessage = "O status deve ter um único caractere: 'S', 'C' ou 'A'.")]
-        public string Status { get; set; } = null!;
+        [Display(Name = "Serviço")]
+        public decimal TotalServico { get; set; }
 
-     
+        [Display(Name = "Desconto")]
+        public decimal TotalDesconto { get; set; }
+
+        [Display(Name = "Restaurante")]
+        public string NomeRestaurante { get; set; } = string.Empty;
+
+        [Display(Name = "Status")]
+        public string Status { get; set; } = string.Empty;
+
+        [Display(Name = "Total")]
+        public decimal Total { get; set; }
+
+        [Display(Name = "Mesa")]
+        public int IdMesa { get; set; }
+
+        public SelectList ? SelectMesa { get; set; }
     }
 }

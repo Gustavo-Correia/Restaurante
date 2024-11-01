@@ -2,6 +2,7 @@
 using Core;
 using AutoMapper;
 using RestauranteWeb.Models;
+using Core.DTO;
 
 namespace RestauranteWeb.Mappers
 {
@@ -10,6 +11,7 @@ namespace RestauranteWeb.Mappers
 		public MesaProfile()
 		{
 			CreateMap<MesaViewModel, Mesa>().ReverseMap();
-		}
+            CreateMap<MesaViewModel, MesaDto>().ReverseMap();
+        }
 	}
 }

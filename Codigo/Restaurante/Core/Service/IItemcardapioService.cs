@@ -15,5 +15,10 @@ namespace Core.Service
         Itemcardapio? Get(uint id);
         IEnumerable<Itemcardapio> GetAll();
         IEnumerable<ItemcardapioDto> GetByNome(string nome);
+
+        Task<List<ItemcardapioDto>> Buscaritemporid(uint id);
+        Task<List<ItemcardapioDto>> BuscarItensPorNome(string nome);
+
+        Task<string> ObterReceita(string nomeReceita);
     }
 }

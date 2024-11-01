@@ -9,11 +9,12 @@ namespace Core.Service
 {
 	public interface IPedidoitemcardapioService
 	{
-		uint Create(Pedidoitemcardapio pedidoitemcardapio);
-		void Edit(Pedidoitemcardapio pedidoitemcardapio);
-		void Delete(uint IdItemCardapio);
-		Pedidoitemcardapio? Get(uint IdItemCardapio);
-		IEnumerable<Pedidoitemcardapio> GetAll();
-		IEnumerable<ItemcardapioDto> GetById(uint IdItemCardapio);
-	}
+        uint Create(Pedidoitemcardapio pedidoitemcardapio);
+        void Edit(Pedidoitemcardapio pedidoitemcardapio);
+        void Delete(uint IdItemCardapio, uint IdPedido);
+        Pedidoitemcardapio? Get(uint IdItemCardapio, uint IdPedido);
+        IEnumerable<Pedidoitemcardapio> GetAll();
+        IEnumerable<ItemcardapioDto> GetById(uint IdItemCardapio);
+
+    }
 }

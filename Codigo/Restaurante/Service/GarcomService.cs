@@ -4,7 +4,6 @@ using Core.DTO;
 using Core.Service;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace Service
 {
     public class GarcomService : IGarcomService
@@ -21,8 +20,6 @@ namespace Service
             context.SaveChanges();
             return garcom.Id;
         }
-
-
 
         public void Delete(uint id)
         {
@@ -53,7 +50,7 @@ namespace Service
         {
             return context.Garcoms.AsNoTracking();
         }
-
+        
         public IEnumerable<GarcomDto> GetByNome(string nome)
         {
             var query = from garcom in context.Garcoms
@@ -76,5 +73,43 @@ namespace Service
         {
             return context.Garcoms.AsNoTracking().ToList();
         }
+        public int QuantidadeGarcomCadastrado()
+        {
+            return context.Garcoms.AsNoTracking().Count();
+        }
+        public async Task<List<GarcomDto>> BuscarGarconsPorRestauranteId(uint id)
+        {
+            var garcons = await context.Garcoms
+                .Where(g => g.IdRestaurante == id)
+                .Select(g => new GarcomDto
+                {
+                    Id = g.Id,
+                    Nome = g.Nome,
+                    Cpf = g.Cpf,
+                    Telefone1 = g.Telefone1,
+                    IdRestaurante = g.IdRestaurante
+                    
+                })
+                .ToListAsync();
+
+            return garcons;
+        }
+
+        public async Task<List<GarcomDto>> BuscarGarconsPorCidade(string cidade)
+        {
+            var garcons = await context.Garcoms
+                .Where(g => g.Cidade == cidade)
+                .Select(g => new GarcomDto
+                {
+                    Id = g.Id,
+                    Nome = g.Nome,
+                    Cpf = g.Cpf,
+                    Telefone1 = g.Telefone1,
+                    IdRestaurante = g.IdRestaurante
+                })
+                .ToListAsync();
+
+            return garcons;
+        }
     }
-}
+}        

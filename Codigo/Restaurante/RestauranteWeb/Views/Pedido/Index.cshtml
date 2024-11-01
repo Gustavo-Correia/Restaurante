@@ -1,65 +1,45 @@
 ﻿@model IEnumerable<RestauranteWeb.Models.PedidoViewModel>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataHoraSolicitacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataHoraAtendimento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdAtendimento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdGarcom)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PedidoDetalhes)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataHoraSolicitacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataHoraAtendimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdAtendimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdGarcom)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PedidoDetalhes)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="index-container">
+    <div class="index-header">
+        <h2 class="index-title">Lista de Pedidos</h2>
+        <div class="index-actions">
+            <a asp-action="Create" class="btn btn-create">Cadastrar</a>
+            <a class="btn btn-primary" data-toggle="modal" data-target="#quantidade">Quantidade de Pedidos</a>
+        </div>
+    </div>
+    <table class="table index-table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Id)</th>
+                <th>@Html.DisplayNameFor(model => model.DataHoraSolicitacao)</th>
+                <th>@Html.DisplayNameFor(model => model.DataHoraAtendimento)</th>
+                <th>@Html.DisplayNameFor(model => model.IdAtendimento)</th>
+                <th>@Html.DisplayNameFor(model => model.IdGarcom)</th>
+                <th>@Html.DisplayNameFor(model => model.Status)</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DataHoraSolicitacao)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DataHoraAtendimento)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IdAtendimento)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IdGarcom)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>
+                        <div class="btn-group">
+                            @Html.ActionLink("Status", "UpdateStatus", new { id = item.Id }, new { @class = "btn btn-status" })
+                            @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-edit" })
+                            @Html.ActionLink("Detalhes", "Details", new { id = item.Id }, new { @class = "btn btn-details" })
+                            @Html.ActionLink("Deletar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

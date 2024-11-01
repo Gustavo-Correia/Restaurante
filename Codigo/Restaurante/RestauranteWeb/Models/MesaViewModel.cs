@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
+using System.Security.Permissions;
 
 
 namespace RestauranteWeb.Models
@@ -7,28 +10,22 @@ namespace RestauranteWeb.Models
     {
         [Key]
         [Required(ErrorMessage = "O ID da mesa é obrigatório.")]
+        [Display(Name = "Código")]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "A identificação da mesa é obrigatória.")]
+        [Display(Name = "Identificação")]
         public string Identificacao { get; set; } = null!;
+        [Display(Name = "Restaurante")]
+        public string? NomeRestaurante { get; set; } = null!;
+
+        [Display(Name = "Status")]
+        public string Status { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "O ID do restaurante é obrigatório.")]
         public uint IdRestaurante { get; set; }
+        public SelectList? Restaurantes { get; set; } = null;
+        public SelectList? SelectStatus { get; set; } = null;
 
-        // Para exibir o nome do restaurante vinculado à mesa
-        [Required(ErrorMessage = "O nome do restaurante é obrigatório.")]
-        public string NomeRestaurante { get; set; } = null!;
-
-        /// <summary>
-        /// Status da mesa:
-        /// L - Livre
-        /// O - Ocupada
-        /// R - Reservada
-        /// </summary>
-        [Required(ErrorMessage = "O status da mesa é obrigatório.")]
-        [StringLength(1, ErrorMessage = "O status deve ter um único caractere: 'L', 'O' ou 'R'.")]
-        public string Status { get; set; } = null!;
-
-        
     }
 }

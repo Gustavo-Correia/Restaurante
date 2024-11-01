@@ -1,83 +1,118 @@
 ﻿@model IEnumerable<RestauranteWeb.Models.RestauranteViewModel>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cnpj)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cep)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rua)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Bairro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cidade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefone1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefone2)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cnpj)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cep)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rua)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Bairro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cidade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefone1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefone2)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="index-container">
+    <div class="index-header">
+        <h2 class="index-title">Lista de Restaurantes</h2>
+        <div class="index-actions">
+            <a asp-action="Create" class="btn btn-create">Cadastrar</a>
+            <a class="btn btn-primary" data-toggle="modal" data-target="#quantidade">Quantidade de Restaurantes</a>
+        </div>
+    </div>
+
+    <table class="table index-table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Id)</th>
+                <th>@Html.DisplayNameFor(model => model.Cnpj)</th>
+                <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                <th>@Html.DisplayNameFor(model => model.Cep)</th>
+                <th>@Html.DisplayNameFor(model => model.Rua)</th>
+                <th>@Html.DisplayNameFor(model => model.Bairro)</th>
+                <th>@Html.DisplayNameFor(model => model.Telefone1)</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Cnpj)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Cep)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Rua)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Bairro)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Telefone1)</td>
+                    <td>
+                        <div class="btn-group">
+                            @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-edit" })
+                            @Html.ActionLink("Detalhes", "Details", new { id = item.Id }, new { @class = "btn btn-details" })
+                            @Html.ActionLink("Deletar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="quantidade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Quantidade de Restaurantes Cadastrados</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>A quantidade de Restaurantes cadastrados é: <strong>@ViewBag.Quantidade</strong></p>
+
+                <h5>Top 10 Restaurantes:</h5>
+                <ul class="top-restaurants-list">
+                    @foreach (var item in Model.Take(10))
+                    {
+                        <li>@item.Nome</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="index-container">
+    <div class="index-header">
+        <h2 class="index-title">Estatísticas dos Restaurantes</h2>
+        <div class="index-actions">
+            <a class="btn-primary" data-toggle="modal" data-target="#estatisticasModal">Estatísticas</a>
+        </div>
+    </div>
+
+    <!-- Você pode adicionar conteúdo aqui, como uma breve descrição das estatísticas ou gráficos -->
+    <div class="statistics-summary">
+        <p>Aqui você pode ver um resumo das estatísticas mais importantes sobre nossos restaurantes. Para detalhes, clique em 'Ver Estatísticas Detalhadas'.</p>
+    </div>
+</div>
+
+<!-- Modal para Estatísticas Detalhadas -->
+<div class="modal fade" id="estatisticasModal" tabindex="-1" role="dialog" aria-labelledby="estatisticasModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="estatisticasModalLabel">Estatísticas Detalhadas dos Restaurantes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>@ViewBag.RelatorioEstatisticas</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+
+

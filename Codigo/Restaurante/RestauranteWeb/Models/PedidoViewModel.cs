@@ -31,9 +31,13 @@ namespace RestauranteWeb.Models
 		[StringLength(1, ErrorMessage = "O status deve ter um único caractere: 'S', 'C' ou 'A'.")]
 		public string Status { get; set; } = null!;
 
-		/// <summary>
-		/// Detalhes adicionais do pedido (opcional).
-		/// </summary>
-		public string? PedidoDetalhes { get; set; }
+        [Required(ErrorMessage = "O novo status do pedido é obrigatório.")]
+        [RegularExpression("^[SCA]$", ErrorMessage = "O novo status deve ser 'S', 'C' ou 'A'.")]
+        public string novostatus { get; set; } = null!;
+
+        /// <summary>
+        /// Detalhes adicionais do pedido (opcional).
+        /// </summary>
+        public string? PedidoDetalhes { get; set; }
 	}
 }

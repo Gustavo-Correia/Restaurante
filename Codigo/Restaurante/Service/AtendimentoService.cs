@@ -20,6 +20,8 @@ namespace Service
 		public uint Create(Atendimento atendimento) 
 		{
 			context.Add(atendimento);
+			var mesa = context.Mesas.Find(atendimento.IdMesa);
+			mesa.Status = "OCUPADA";
 			context.SaveChanges();
 			return atendimento.Id;
 		}
@@ -31,6 +33,8 @@ namespace Service
 			if (atendimento != null)
 			{
 				context.Remove(atendimento);
+				var mesa = context.Mesas.Find(atendimento.IdMesa);
+				mesa.Status = "LIVRE";
 				context.SaveChanges();
 			}
 		}
@@ -38,6 +42,11 @@ namespace Service
 		public void Edit(Atendimento atendimento) 
 		{
 			context.Update(atendimento);
+			if(atendimento.Status == "C" || atendimento.Status == "F")
+			{
+				var mesa = context.Mesas.Find(atendimento.IdMesa);
+				mesa.Status = "LIVRE";
+			}
 			context.SaveChanges();
 		}
 
@@ -63,5 +72,24 @@ namespace Service
 			return query.AsNoTracking();
 		}
 
-	}
+        public IEnumerable<AtendimentoDto> GetByStatus(string status)
+        {
+			var query = context.Atendimentos
+				.Where(x => x.Status == status)
+				.Select(x => new AtendimentoDto
+				{
+					Id = x.Id,
+					DataHoraInicio = x.DataHoraInicio,
+					DataHoraFim = x.DataHoraFim,
+					IdMesa = x.IdMesa,
+					NomeRestaurante = x.IdMesaNavigation.IdRestauranteNavigation.Nome,
+					Status = x.Status,
+					Total = x.Total,
+					TotalConta = x.TotalConta,
+					TotalDesconto = x.TotalConta,
+					TotalServico = x.TotalServico
+				});
+			return query.AsNoTracking();
+        }
+    }
 }

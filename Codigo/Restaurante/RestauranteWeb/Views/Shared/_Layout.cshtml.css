@@ -1,48 +1,132 @@
 ﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+
+
+/* layout.css */
+
+/* Estilos gerais da página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #333;
+    color: #f0f0f0;
+    margin: 0;
+    padding: 0;
 }
 
-a {
-  color: #0077cc;
+/* Estilos para o cabeçalho (header) */
+header {
+    background-color: #333;
+    padding: 20px 0;
+    color: white;
 }
 
+    header .navbar-brand {
+        font-size: 2rem;
+        color: white;
+        font-weight: bold;
+    }
+
+    header .navbar-nav .nav-link {
+        color: #00bfff;
+        padding: 10px;
+        text-decoration: none;
+        border: 1px solid #00bfff;
+        border-radius: 5px;
+        margin: 0 5px;
+    }
+
+        header .navbar-nav .nav-link:hover {
+            background-color: #00bfff;
+            color: white;
+        }
+
+/* Estilos para o campo de pesquisa */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* Estilos para o botão de pesquisa */
+button[type="submit"] {
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+    button[type="submit"]:hover {
+        background-color: #007bbf;
+    }
+
+/* Estilos para o rodapé (footer) */
+footer {
+    background-color: #1f1f1f;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+    footer a {
+        color: #00bfff;
+    }
+
+        footer a:hover {
+            color: #007bbf;
+        }
+
+/* Estilos gerais para botões */
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    background-color: #26c4d5;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    width: 100%;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    .btn-primary:hover {
+        background-color: #007bbf;
+    }
+
+.btn-back {
+    background-color: #00bfff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    width: 100%;
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+.btn-link {
+    color: #00bfff;
+    text-decoration: none;
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    .btn-link:hover {
+        text-decoration: underline;
+    }
+
+/* Estilos de responsividade */
+@media (max-width: 768px) {
+    header .navbar-brand {
+        font-size: 1.5rem;
+    }
 }
 
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
-}
+
+

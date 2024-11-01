@@ -15,5 +15,6 @@ namespace Core.Service
 		Atendimento? Get(uint id);
 		IEnumerable<Atendimento> GetAll();
 		IEnumerable<AtendimentoDto> GetById(uint Id);
+		IEnumerable<AtendimentoDto> GetByStatus(string status);
 	}
 }

@@ -2,13 +2,7 @@
 
 <div class="index-container">
     <div class="index-header">
-        <h2 class="index-title">Lista de Garçons</h2>
-        <div class="index-actions">
-            <a asp-action="Create" class="btn btn-create">Cadastrar</a>
-            <a class="btn btn-create" data-bs-toggle="modal" data-bs-target="#quantidade">Quantidade de Garçons</a>
-            <a class="btn btn-create" data-bs-toggle="modal" data-bs-target="#buscar">Filtrar Restaurante</a>
-            <a class="btn btn-create" data-bs-toggle="modal" data-bs-target="#buscarCidade">Filtrar Cidade</a> <!-- Botão para abrir a modal de busca por cidade -->
-        </div>
+        <h2 class="index-title">Garçons de Restaurante Especifico</h2>
     </div>
 
     <table class="table index-table">
@@ -69,47 +63,12 @@
                         <label for="IdRestaurante" class="form-label">ID do Restaurante</label>
                         <input type="number" class="form-control" id="IdRestaurante" name="IdRestaurante" required>
                     </div>
-                    <button type="button" class="btn-primary" onclick="redirectIfIdExists()">Buscar</button>
+                    <button type="button" class="btn btn-primary" onclick="redirectIfIdExists()">Buscar</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Modal com pesquisa por Cidade -->
-<div class="modal fade" id="buscarCidade" tabindex="-1" aria-labelledby="meuModalCidade" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="meuModalCidade">Buscar Garçons por Cidade</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="formBuscarCidade">
-                    <div class="mb-3">
-                        <label for="Cidade" class="form-label">Cidade</label>
-                        <input type="text" class="form-control" id="Cidade" name="cidade" placeholder="Digite o nome da cidade..." required>
-                    </div>
-                    <button type="button" class="btn btn-primary" onclick="buscarGarconsPorCidade()">Buscar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    function buscarGarconsPorCidade() {
-        var cidade = document.getElementById("Cidade").value;
-
-        if (cidade) {
-            // Redireciona para a página de busca com o nome da cidade
-            window.location.href = '@Url.Action("BuscarGarconsPorCidade", "Garcom")' + '?cidade=' + encodeURIComponent(cidade);
-        } else {
-            alert("Por favor, insira o nome de uma cidade válida.");
-        }
-    }
-</script>
-
 
 <!-- JS do Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -119,7 +78,7 @@
         var idRestaurante = document.getElementById("IdRestaurante").value;
 
         if (idRestaurante) {
-            // Redireciona para a página de busca com o ID do restaurante
+            
             window.location.href = '@Url.Action("BuscarGarconsPorRestauranteId", "Garcom")' + '?id=' + idRestaurante;
         } else {
             alert("Por favor, insira um ID de restaurante válido.");

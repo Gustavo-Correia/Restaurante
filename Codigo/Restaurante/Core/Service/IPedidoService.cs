@@ -12,8 +12,10 @@ namespace Core.Service
 		uint Create(Pedido pedido);
 		void Edit(Pedido pedido);
 		void Delete(uint id);
-		Pedido? Get(uint id);
+        void AtualizarStatus(uint id, string novoStatus);
+        Pedido? Get(uint id);
 		IEnumerable<Pedido> GetAll();
 		IEnumerable<ItemcardapioDto> GetById(uint Id);
-	}
+        
+    }
 }

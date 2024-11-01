@@ -1,0 +1,30 @@
+﻿@model RestauranteWeb.Models.PedidoViewModel
+
+<h2>Atualizar Status do Pedido</h2>
+
+<form asp-action="UpdateStatus" method="post">
+    <input type="hidden" asp-for="Id" /> <!-- Campo oculto para o ID do pedido -->
+    <input type="hidden" asp-for="novostatus" /> <!-- Campo oculto para o novo status -->
+
+    <div class="form-group">
+        <label>Status Atual:</label>
+        <input asp-for="Status" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label>Novo Status:</label>
+        @Html.DropDownListFor(model => model.Status, new SelectList(new[]
+                 {
+        new { Value = "S", Text = "Solicitado" },
+        new { Value = "A", Text = "Em preparo" },
+        new { Value = "C", Text = "Pronto" }
+        }, "Value", "Text", Model.Status), "Selecione o status", new { @class = "form-control", onchange = "updateNovoStatus(this)" })
+    </div>
+    <button type="submit" class="btn btn-primary">Atualizar Status</button>
+</form>
+
+<script>
+    function updateNovoStatus(select) {
+        var novoStatus = select.value; // Obtém o valor selecionado
+        document.querySelector('input[name="novostatus"]').value = novoStatus; // Atualiza o campo oculto
+    }
+</script>

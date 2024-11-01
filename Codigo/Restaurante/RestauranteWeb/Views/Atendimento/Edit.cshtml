@@ -1,47 +1,65 @@
 ﻿@model RestauranteWeb.Models.AtendimentoViewModel
 
-<h4>AtendimentoViewModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+@{
+    ViewData["Title"] = "Atualizar Atendimento";
+}
+
+<div class="details-container">
+    <h2 class="details-title">Edição do Atendimento @Model.Id</h2>
+    <hr class="details-divider" />
+    <div class="form-container">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
             <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
+                <label asp-for="TotalConta" class="control-label"></label>
+                <input asp-for="TotalConta" class="form-control" />
+                <span asp-validation-for="TotalConta" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="Identificacao" class="control-label"></label>
-                <input asp-for="Identificacao" class="form-control" />
-                <span asp-validation-for="Identificacao" class="text-danger"></span>
+                <label asp-for="TotalServico" class="control-label"></label>
+                <input asp-for="TotalServico" class="form-control" />
+                <span asp-validation-for="TotalServico" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="IdRestaurante" class="control-label"></label>
-                <input asp-for="IdRestaurante" class="form-control" />
-                <span asp-validation-for="IdRestaurante" class="text-danger"></span>
+                <label asp-for="TotalDesconto" class="control-label"></label>
+                <input asp-for="TotalDesconto" class="form-control" />
+                <span asp-validation-for="TotalDesconto" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="NomeRestaurante" class="control-label"></label>
-                <input asp-for="NomeRestaurante" class="form-control" />
-                <span asp-validation-for="NomeRestaurante" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
+                <select asp-for="Status" class="form-control">
+                    <option value="I">Iniciado</option>
+                    <option value="C">Cancelado</option>
+                    <option value="F">Finalizado</option>
+                </select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <label asp-for="IdMesa" class="control-label"></label>
+                <select asp-for="IdMesa" class="form-control" asp-items="Model.SelectMesa">
+                </select>
+                <span asp-validation-for="IdMesa" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Salvar Alterações" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar para a lista</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

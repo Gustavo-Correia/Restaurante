@@ -1,44 +1,23 @@
 ﻿@model RestauranteWeb.Models.MesaViewModel
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>MesaViewModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Identificacao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Identificacao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdRestaurante)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdRestaurante)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeRestaurante)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomeRestaurante)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
+<div class="details-container">
+    <h2 class="details-title">Deletar Mesa</h2>
+    <p class="confirmation-text text-black">Você tem certeza de que deseja excluir essa Mesa ?</p>
+    <hr class="details-divider" />
+    <dl class="details-list">
+        <dt>@Html.DisplayNameFor(model => model.Id)</dt>
+        <dd>@Html.DisplayFor(model => model.Id)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Identificacao)</dt>
+        <dd>@Html.DisplayFor(model => model.Identificacao)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.NomeRestaurante)</dt>
+        <dd>@Html.DisplayFor(model => model.NomeRestaurante)</dd>
+
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+
+    <form asp-action="Delete" class="details-buttons">
+        <input type="submit" value="Deletar" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-back">Voltar</a>
     </form>
 </div>

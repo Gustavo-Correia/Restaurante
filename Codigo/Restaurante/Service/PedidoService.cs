@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace Service
 {
@@ -17,7 +18,20 @@ namespace Service
 			this.context = context;
 		}
 
-		public uint Create(Pedido pedido) 
+        public void AtualizarStatus(uint id, string novoStatus)
+        {
+            var pedido = context.Pedidos.Find(id);
+            if (pedido != null)
+            {
+                
+                pedido.Status = novoStatus;
+                context.SaveChanges();
+            }
+        }
+
+
+
+        public uint Create(Pedido pedido) 
 		{
 			context.Add(pedido);
 			context.SaveChanges();
@@ -62,6 +76,7 @@ namespace Service
 
 			return query.AsNoTracking();
 		}
+        
 
-	}
+    }
 }

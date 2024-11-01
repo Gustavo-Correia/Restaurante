@@ -8,6 +8,9 @@ namespace Core.DTO
 {
 	public class MesaDto
 	{
-		public uint Id { get; set; }
-	}
+		public int Id { get; set; }
+        public string Identificacao { get; set; } = null!;
+		public string NomeRestaurante { get; set; } = null!;
+		public string Status { get; set; } = null!;
+    }
 }

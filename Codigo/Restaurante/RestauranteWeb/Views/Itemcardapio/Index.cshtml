@@ -1,65 +1,151 @@
 ﻿@model IEnumerable<RestauranteWeb.Models.ItemcardapioViewModel>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Preco)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Detalhes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ativo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Disponivel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdRestaurante)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Preco)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Detalhes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ativo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Disponivel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdRestaurante)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="index-container">
+    <div class="index-header">
+        <h2 class="index-title">Lista de Itens do Cardápio</h2>
+        <div class="index-actions" style="text-align: center; display: flex; justify-content: center; gap: 10px;">
+            <a asp-action="Create" class="btn btn-create">Cadastrar</a>
+            <a class="btn btn-create" data-bs-toggle="modal" data-bs-target="#buscar">Buscar</a>
+            <a asp-action="ExportarParaExcel" class="btn btn-primary">Exportar para Excel</a>
+        </div>
+       <form asp-action="ImportarDoExcel" asp-controller="Itemcardapio" method="post" enctype="multipart/form-data">
+            <label for="arquivoExcel" style="display: none;">Selecione o arquivo Excel para importar:</label>
+            <input type="file" id="arquivoExcel" name="arquivoExcel" accept=".xlsx, .xls" required style="display: none;" />
+            <div style="display: flex; align-items: center; gap: 10px;">
+            <button type="button" id="btnSelecionarArquivo">Escolher Arquivo</button>
+            <button type="submit">Importar</button>
+            </div>
+        </form>
+
+
+    </div>
+
+    <table class="table index-table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Id)</th>
+                <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                <th>@Html.DisplayNameFor(model => model.Preco)</th>
+                <th>@Html.DisplayNameFor(model => model.Detalhes)</th>
+                <th>@Html.DisplayNameFor(model => model.Ativo)</th>
+                <th>@Html.DisplayNameFor(model => model.Disponivel)</th>
+                <th>@Html.DisplayNameFor(model => model.IdRestaurante)</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Preco)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Detalhes)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Ativo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Disponivel)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IdRestaurante)</td>
+                    <td>
+                        <div class="btn-group">
+                            @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-edit" })
+                            @Html.ActionLink("Detalhes", "Details", new { id = item.Id }, new { @class = "btn btn-details" })
+                            @Html.ActionLink("Deletar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                        </div>
+                        <a href="@Url.Action("VerReceita", "ItemCardapio", new { id = item.Id })"
+                           class="btn btn-primary"
+                           onclick="return mostrarReceita(this.href)">Ver Receita</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+
+
+<div class="modal fade" id="buscar" tabindex="-1" aria-labelledby="meuModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="meuModalLabel">Buscar Item</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="get" action="@Url.Action("BuscarItemPorIdOuNome", "ItemCardapio")">
+                    <div class="mb-3">
+                        <label for="Id" class="form-label">ID do item</label>
+                        <input type="number" class="form-control" id="Id" name="id">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Nome" class="form-label">Nome do item</label>
+                        <input type="text" class="form-control" id="Nome" name="nome">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="redirectIfIdOrNameExists()">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function mostrarReceita(url) {
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const receita = data.hits[0].recipe;
+                const detalhes = `
+                        <div style="
+                                position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                            background-color: #fff; border: 1px solid #ccc; border-radius: 8px;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 16px; max-width: 300px;
+                            z-index: 1000; font-family: Arial, sans-serif;">
+                            <h3 style="margin-top: 0; color: #333;">${receita.label}</h3>
+                            <ul style="list-style-type: disc; padding-left: 20px; color: #000;">
+                                ${receita.ingredientLines.map(ing => `<li>${ing}</li>`).join('')}
+                            </ul>
+                            <button onclick="this.parentElement.remove()" style="
+                                margin-top: 12px; padding: 6px 12px; border: none; background-color: #007bff;
+                                color: white; border-radius: 4px; cursor: pointer;">
+                                Fechar
+                            </button>
+                    `;
+
+                const modal = document.createElement('div');
+                modal.innerHTML = detalhes;
+                document.body.appendChild(modal);
+            })
+            .catch(error => console.error("Erro ao buscar a receita:", error));
+
+        return false;
+    }
+</script>
+
+
+<!-- JS do Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+<script>
+    function redirectIfIdOrNameExists() {
+        var id = document.getElementById("Id").value;
+        var nome = document.getElementById("Nome").value;
+
+        if (id || nome) {
+            // Redireciona para a página de busca com o ID ou Nome
+            var url = '@Url.Action("BuscarItemPorIdOuNome", "ItemCardapio")' + '?';
+            if (id) url += 'id=' + id;
+            if (nome) url += '&nome=' + encodeURIComponent(nome);
+            window.location.href = url;
+        } else {
+            alert("Por favor, insira um ID ou Nome válido.");
+        }
+    }
+</script>
+
+<script>
+    document.getElementById('btnSelecionarArquivo').addEventListener('click', function() {
+        document.getElementById('arquivoExcel').click();
+    });
+</script>

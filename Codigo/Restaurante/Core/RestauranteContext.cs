@@ -14,7 +14,7 @@ public partial class RestauranteContext : DbContext
         : base(options)
     {
     }
-
+   
     public virtual DbSet<Atendimento> Atendimentos { get; set; }
 
     public virtual DbSet<Garcom> Garcoms { get; set; }
@@ -29,6 +29,7 @@ public partial class RestauranteContext : DbContext
 
     public virtual DbSet<Restaurante> Restaurantes { get; set; }
 
+  
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Atendimento>(entity =>

@@ -1,8 +1,42 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Página Inicial - Gestão de Restaurante";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center py-5 bg-light">
+    <h1 class="display-3 text-primary font-weight-bold">Painel de Gestão</h1>
+    <p class="lead text-secondary">Acesse rapidamente as principais áreas de gestão do restaurante</p>
+</div>
+
+<div class="container my-2 py-2">
+    <table class="table table-borderless w-50 mx-auto">
+        <tr>
+            <td style="width: 50%;">
+                <a class="btn btn-primary btn-xl w-100 py-3 fs-4" asp-controller="Restaurante" asp-action="Index">Restaurantes</a>
+            </td>
+            <td style="width: 50%;">
+                <a class="btn btn-primary btn-xl w-100 py-3 fs-4" asp-controller="Garcom" asp-action="Index">Garçons</a>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 50%;">
+                <a class="btn btn-primary btn-xl w-100 py-3 fs-4" asp-controller="ItemCardapio" asp-action="Index">Itens do Cardápio</a>
+            </td>
+            <td style="width: 50%;">
+                <a class="btn btn-primary btn-xl w-100 py-3 fs-4" asp-controller="Pedido" asp-action="Index">Pedidos</a>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 50%;">
+                <a class="btn btn-primary btn-xl w-100 py-3 fs-4" asp-controller="PedidoItemCardapio" asp-action="Index">Pedido Item Cardápio</a>
+            </td>
+            <td style="width: 50%;">
+                <a class="btn btn-primary btn-xl w-100 py-3 fs-4" asp-controller="Mesa" asp-action="Index">Mesas</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <a class="btn btn-primary btn-xl w-100 py-3 fs-4" asp-controller="Atendimento" asp-action="Index">Atendimentos</a>
+            </td>
+        </tr>
+    </table>
 </div>

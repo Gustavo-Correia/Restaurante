@@ -4,6 +4,7 @@ using Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RestauranteWeb.Models;
+using Service;
 
 namespace RestauranteWeb.Controllers
 {
@@ -20,16 +21,26 @@ namespace RestauranteWeb.Controllers
 
 
         // GET: RestauranteController
-
         public ActionResult Index()
         {
-            var listaRestaurante = restauranteService.GetAll();
+            var listaRestaurante = restauranteService.GetAll()
+                .OrderBy(r => r.Nome)
+                .Take(10) 
+                .ToList();
             var listaRestauranteModel = mapper.Map<List<RestauranteViewModel>>(listaRestaurante);
+            int quantidadeRestaurante = restauranteService.QuantidadeRestaurantesCadastrado();
+            ViewBag.Quantidade = quantidadeRestaurante;
             return View(listaRestauranteModel);
         }
 
+        public IActionResult Estatisticas()
+        {
+            var relatorio = restauranteService.GerarRelatorioEstatisticas();
+            return View("Estatisticas", model: relatorio);
+        }
+
         // GET: RestauranteController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(uint id)
         {
             var restaurante = restauranteService.Get(id);
             RestauranteViewModel restauranteViewModel = mapper.Map<RestauranteViewModel>(restaurante);
@@ -56,7 +67,7 @@ namespace RestauranteWeb.Controllers
         }
 
         // GET: RestauranteController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(uint id)
         {
             var restaurante = restauranteService.Get(id);
             RestauranteViewModel restauranteViewModel = mapper.Map<RestauranteViewModel>(restaurante);
@@ -77,7 +88,7 @@ namespace RestauranteWeb.Controllers
         }
 
         // GET: RestauranteController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(uint id)
         {
             var restaurante = restauranteService.Get(id);
             RestauranteViewModel restauranteViewModel = mapper.Map<RestauranteViewModel>(restaurante);
@@ -87,7 +98,7 @@ namespace RestauranteWeb.Controllers
         // POST: RestauranteController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, RestauranteViewModel restauranteViewModel)
+        public ActionResult Delete(uint id, RestauranteViewModel restauranteViewModel)
         {
             restauranteService.Delete(id);
             return RedirectToAction(nameof(Index));

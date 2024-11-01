@@ -7,7 +7,7 @@ public partial class Itemcardapio
 {
     public uint Id { get; set; }
 
-    public string Nome { get; set; } = null!;
+    public string? Nome { get; set; } = null!;
 
     public decimal? Preco { get; set; }
 

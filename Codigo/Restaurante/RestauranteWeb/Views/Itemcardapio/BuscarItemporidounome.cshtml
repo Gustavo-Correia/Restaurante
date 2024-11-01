@@ -1,0 +1,38 @@
+﻿@model IEnumerable<RestauranteWeb.Models.ItemcardapioViewModel>
+
+<div class="index-container">
+    <div class="index-header">
+        <h2 class="index-title">Item com o ID ou nome solicitado</h2>
+    </div>
+
+    <table class="table index-table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.First().Id)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Nome)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Preco)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Disponivel)</th>
+                <th>@Html.DisplayNameFor(model => model.First().IdRestaurante)</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nome</td>
+                    <td>@item.Preco</td>
+                    <td>@item.Disponivel</td>
+                    <td>@item.IdRestaurante</td>
+                    <td class="btn-group">
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-edit" })
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.Id }, new { @class = "btn btn-details" })
+                        @Html.ActionLink("Deletar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

@@ -1,4 +1,4 @@
-/* Estilos gerais da p�gina */
+﻿/* Estilos gerais da página */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #333;
@@ -7,7 +7,15 @@ body {
     padding: 0;
 }
 
-/* Estilos para o cabe�alho (header) */
+.statistics-summary {
+    background-color: white;
+    color: #000;
+    font-size: 0.8rem; 
+    padding: 20px;
+    border-radius: 5px; 
+    margin: 20px;
+}
+/* Estilos para o cabeçalho (header) */
 header {
     background-color: #333;
     padding: 20px 0;
@@ -16,23 +24,29 @@ header {
 
     header .navbar-brand {
         font-size: 2rem;
-        color: #f0f0f0;
+        color: white;
         font-weight: bold;
     }
 
     header .navbar-nav .nav-link {
-        color: #00bfff;
+        background-color: #26c4d5;
+        color: #ffffff !important;
         padding: 10px;
-        border: 1px solid #00bfff;
+        text-decoration: none;
+        border: 1px solid #0f707b;
         border-radius: 5px;
         margin: 0 5px;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     }
 
         header .navbar-nav .nav-link:hover {
-            background-color: #00bfff;
-            color: white;
+            background-color: #26c4d5;
+            border-color: #00bfff;
+            color: #ffffff !important;
         }
-
+a {
+    text-decoration: none !important;
+}
 /* Estilos para o campo de pesquisa */
 input[type="text"] {
     width: 100%;
@@ -42,7 +56,7 @@ input[type="text"] {
     margin-top: 15px;
 }
 
-/* Estilos para o bot�o de pesquisa */
+/* Estilos para o botão de pesquisa */
 button[type="submit"] {
     background-color: #00bfff;
     color: white;
@@ -57,7 +71,7 @@ button[type="submit"] {
         background-color: #007bbf;
     }
 
-/* Estilos para o formul�rio */
+/* Estilos para o formulário */
 .form-restaurante {
     background-color: #ffffff;
     padding: 20px;
@@ -79,11 +93,46 @@ button[type="submit"] {
     padding: 10px;
 }
 
-    .form-control:focus {
-        border-color: #00bfff;
-        box-shadow: 0 0 0 0.1rem rgba(0, 191, 255, 0.5);
+.modal-dialog {
+    max-width: 600px;
+    margin: 1.75rem auto;
+    color: black;
+}
+
+.modal-content {
+    border-radius: 0.5rem;
+}
+
+.modal-header {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+    background-color: #f7f7f7;
+}
+
+.modal {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header .close {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 10%;
+    padding: 0.5rem;
+}
+
+    .modal-header .close:hover {
+        background-color: darkred;
+        color: white;
     }
 
+.form-control:focus {
+    border-color: #00bfff;
+    box-shadow: 0 0 0 0.1rem rgba(0, 191, 255, 0.5);
+}
 
 a {
     color: #00bfff;
@@ -93,7 +142,6 @@ a {
         text-decoration: underline;
         color: #007bbf;
     }
-
 
 table {
     width: 100%;
@@ -116,21 +164,34 @@ td {
     background-color: #444;
 }
 
-/* Estilos para os bot�es */
+/* Estilos para os botões */
 .btn-primary {
-    background-color: #00bfff;
+    background-color: #26c4d5;
     border: none;
-    padding: 10px 20px;
+    padding: 5px 10px;
     border-radius: 5px;
+    text-decoration: none;
     font-size: 1rem;
     color: white;
     cursor: pointer;
     width: 100%;
 }
 
-    .btn-primary:hover {
-        background-color: #007bbf;
-    }
+.btn-back {
+    background-color: #00bfff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #00bfff !important;
+}
 
 .btn-link {
     color: #00bfff;
@@ -141,7 +202,7 @@ td {
         text-decoration: underline;
     }
 
-/* Estilos para o rodap� (footer) */
+/* Estilos para o rodapé (footer) */
 footer {
     background-color: #1f1f1f;
     color: white;
@@ -157,6 +218,2100 @@ footer {
         footer a:hover {
             color: #007bbf;
         }
+
+/* Estilos para os detalhes */
+.details-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.details-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, #0f707b, #26c4d5);
+    margin: 10px 0;
+}
+
+.details-list {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px 20px;
+    font-size: 16px;
+    color: #495057;
+}
+
+    .details-list dt {
+        font-weight: bold;
+        color: #0f707b;
+    }
+
+    .details-list dd {
+        margin: 0;
+        padding: 5px;
+        background-color: #e9ecef;
+        border-radius: 4px;
+    }
+
+.details-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Estilos para o index */
+.index-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.index-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.index-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.index-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-create {
+    background-color: #26c4d5 !important; 
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-create:hover {
+        background-color: #26c4d5 !important; 
+    }
+
+.index-table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+    
+}
+
+    .index-table th, .index-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        color: #495057;
+    }
+
+    .index-table th {
+        background-color: #26c4d5;
+        color: #ffffff;
+        text-transform: uppercase;
+    }
+
+    .index-table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+.top-restaurants-list {
+    list-style: none;
+    padding: 0;
+}
+
+    .top-restaurants-list li {
+        background-color: #e9ecef;
+        padding: 8px;
+        margin-bottom: 5px;
+        border-radius: 4px;
+    }
+
+/* Estilos para os bot�es em grupo --- */
+.btn-group {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+    margin: 5px 5px;
+}
+
+.btn-edit {
+    background-color: #26c4d5;
+    padding: 7px 15px;
+    width: 75px;
+    height: 35px;
+}
+.btn-status {
+    background-color: #26c4d5;
+    padding: 7px 15px;
+    width: 100px;
+    height: 35px;
+}
+
+    .btn-edit:hover {
+        background-color: #00bfff !important;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+.btn-details {
+    background-color: #26c4d5;
+}
+
+    .btn-details:hover {
+        background-color: #00bfff !important;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+
+/* Estilos gerais da página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #333;
+    color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Estilos para o campo de pesquisa */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* Estilos para o botão de pesquisa */
+button[type="submit"] {
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+    button[type="submit"]:hover {
+        background-color: #007bbf;
+    }
+
+/* Estilos para o formulário */
+.form-restaurante {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
+    color: #000000;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.modal-dialog {
+    max-width: 600px;
+    margin: 1.75rem auto;
+    color: black;
+}
+
+.modal-content {
+    border-radius: 0.5rem;
+}
+
+.modal-header {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+    background-color: #f7f7f7;
+}
+
+.modal {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header .close {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 10%;
+    padding: 0.5rem;
+}
+
+    .modal-header .close:hover {
+        background-color: darkred;
+        color: white;
+    }
+
+.form-control:focus {
+    border-color: #00bfff;
+    box-shadow: 0 0 0 0.1rem rgba(0, 191, 255, 0.5);
+}
+
+a {
+    color: #00bfff;
+}
+
+    a:hover {
+        text-decoration: underline;
+        color: #007bbf;
+    }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: #f0f0f0;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+td {
+    background-color: #444;
+}
+
+/* Estilos para os botões */
+.btn-primary {
+    background-color: #26c4d5;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-back {
+    background-color: #00bfff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #26c4d5;
+}
+
+.btn-link {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+    .btn-link:hover {
+        text-decoration: underline;
+    }
+
+/* Estilos para o rodapé (footer) */
+footer {
+    background-color: #1f1f1f;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+    footer a {
+        color: #00bfff;
+    }
+
+        footer a:hover {
+            color: #007bbf;
+        }
+
+/* Estilos para os detalhes */
+.details-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.details-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, #0f707b, #26c4d5);
+    margin: 10px 0;
+}
+
+.details-list {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px 20px;
+    font-size: 16px;
+    color: #495057;
+}
+
+    .details-list dt {
+        font-weight: bold;
+        color: #0f707b;
+    }
+
+    .details-list dd {
+        margin: 0;
+        padding: 5px;
+        background-color: #e9ecef;
+        border-radius: 4px;
+    }
+
+.details-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Estilos para o index */
+.index-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.index-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.index-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.index-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-create {
+    background-color: #26c4d5;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-create:hover {
+        background-color: deepskyblue !important;
+    }
+
+.index-table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+    .index-table th, .index-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        color: #495057;
+    }
+
+    .index-table th {
+        background-color: #26c4d5;
+        color: #ffffff;
+        text-transform: uppercase;
+    }
+
+    .index-table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+.top-restaurants-list {
+    list-style: none;
+    padding: 0;
+}
+
+    .top-restaurants-list li {
+        background-color: #e9ecef;
+        padding: 8px;
+        margin-bottom: 5px;
+        border-radius: 4px;
+    }
+
+/* Estilos para os bot�es em grupo --- */
+.btn-group {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+    margin: 5px 5px;
+}
+
+.btn-edit {
+    background-color: #26c4d5;
+    padding: 7px 15px;
+    width: 75px;
+    height: 35px;
+}
+
+    .btn-edit:hover {
+        background-color: #0c5e64;
+    }
+
+.btn-details {
+    background-color: #26c4d5;
+}
+
+    .btn-details:hover {
+        background-color: #1fa8bb;
+    }
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+/* Estilos de responsividade */
+@media (max-width: 768px) {
+    header .navbar-brand {
+        font-size: 1.5rem;
+    }
+
+    .form-restaurante {
+        margin: 15px 0;
+    }
+}
+/* Estilos gerais da página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #333;
+    color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para o cabeçalho (header) */
+header {
+    background-color: #333;
+    padding: 20px 0;
+    color: white;
+}
+
+    header .navbar-brand {
+        font-size: 2rem;
+        color: white;
+        font-weight: bold;
+    }
+
+    header .navbar-nav .nav-link {
+        color: #00bfff;
+        padding: 10px;
+        text-decoration: none;
+        border: 1px solid #00bfff;
+        border-radius: 5px;
+        margin: 0 5px;
+    }
+
+        header .navbar-nav .nav-link:hover {
+            background-color: #00bfff;
+            color: white;
+        }
+
+
+
+/* Estilos para o campo de pesquisa */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* Estilos para o botão de pesquisa */
+button[type="submit"] {
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+    button[type="submit"]:hover {
+        background-color: #007bbf;
+    }
+
+/* Estilos para o formulário */
+.form-restaurante {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
+    color: #000000;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.modal-dialog {
+    max-width: 600px;
+    margin: 1.75rem auto;
+    color: black;
+}
+
+.modal-content {
+    border-radius: 0.5rem;
+}
+
+.modal-header {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+    background-color: #f7f7f7;
+}
+
+.modal {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header .close {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 10%;
+    padding: 0.5rem;
+}
+
+    .modal-header .close:hover {
+        background-color: darkred;
+        color: white;
+    }
+
+.form-control:focus {
+    border-color: #00bfff;
+    box-shadow: 0 0 0 0.1rem rgba(0, 191, 255, 0.5);
+}
+
+a {
+    color: #00bfff;
+}
+
+    a:hover {
+        text-decoration: underline;
+        color: #007bbf;
+    }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: #f0f0f0;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+td {
+    background-color: #444;
+}
+
+/* Estilos para os botões */
+.btn-primary {
+    background-color: #26c4d5;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-back {
+    background-color: #00bfff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #007bbf;
+}
+
+.btn-link {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+    .btn-link:hover {
+        text-decoration: underline;
+    }
+
+/* Estilos para o rodapé (footer) */
+footer {
+    background-color: #1f1f1f;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+    footer a {
+        color: #00bfff;
+    }
+
+        footer a:hover {
+            color: #007bbf;
+        }
+
+/* Estilos para os detalhes */
+.details-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.details-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, #0f707b, #26c4d5);
+    margin: 10px 0;
+}
+
+.details-list {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px 20px;
+    font-size: 16px;
+    color: #495057;
+}
+
+    .details-list dt {
+        font-weight: bold;
+        color: #0f707b;
+    }
+
+    .details-list dd {
+        margin: 0;
+        padding: 5px;
+        background-color: #e9ecef;
+        border-radius: 4px;
+    }
+
+.details-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Estilos para o index */
+.index-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.index-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.index-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.index-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-create {
+    background-color: #26c4d5;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-create:hover {
+        background-color: #0c5e64;
+    }
+
+.index-table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+    .index-table th, .index-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        color: #495057;
+    }
+
+    .index-table th {
+        background-color: #26c4d5;
+        color: #ffffff;
+        text-transform: uppercase;
+    }
+
+    .index-table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+.top-restaurants-list {
+    list-style: none;
+    padding: 0;
+}
+
+    .top-restaurants-list li {
+        background-color: #e9ecef;
+        padding: 8px;
+        margin-bottom: 5px;
+        border-radius: 4px;
+    }
+
+/* Estilos para os bot�es em grupo --- */
+.btn-group {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+    margin: 5px 5px;
+}
+
+.btn-edit {
+    background-color: #26c4d5;
+    padding: 7px 15px;
+    width: 75px;
+    height: 35px;
+}
+
+    .btn-edit:hover {
+        background-color: #0c5e64;
+    }
+
+.btn-details {
+    background-color: #26c4d5;
+}
+
+    .btn-details:hover {
+        background-color: #1fa8bb;
+    }
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+/* Estilos de responsividade */
+@media (max-width: 768px) {
+    header .navbar-brand {
+        font-size: 1.5rem;
+    }
+
+    .form-restaurante {
+        margin: 15px 0;
+    }
+}
+/* Estilos gerais da página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #333;
+    color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para o cabeçalho (header) */
+header {
+    background-color: #333;
+    padding: 20px 0;
+    color: white;
+}
+
+    header .navbar-brand {
+        font-size: 2rem;
+        color: white;
+        font-weight: bold;
+    }
+
+    header .navbar-nav .nav-link {
+        background-color: #26c4d5;
+        color: #ffffff !important;
+        padding: 10px;
+        text-decoration: none;
+        border: 1px solid #0f707b;
+        border-radius: 5px;
+        margin: 0 5px;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+        header .navbar-nav .nav-link:hover {
+            background-color: #26c4d5;
+            border-color: #00bfff;
+            color: #ffffff !important;
+        }
+
+/* Estilos para o campo de pesquisa */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* Estilos para o botão de pesquisa */
+button[type="submit"] {
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+    button[type="submit"]:hover {
+        background-color: #007bbf;
+    }
+
+/* Estilos para o formulário */
+.form-restaurante {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
+    color: #000000;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.modal-dialog {
+    max-width: 600px;
+    margin: 1.75rem auto;
+    color: black;
+}
+
+.modal-content {
+    border-radius: 0.5rem;
+}
+
+.modal-header {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+    background-color: #f7f7f7;
+}
+
+.modal {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header .close {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 10%;
+    padding: 0.5rem;
+}
+
+    .modal-header .close:hover {
+        background-color: darkred;
+        color: white;
+    }
+
+.form-control:focus {
+    border-color: #00bfff;
+    box-shadow: 0 0 0 0.1rem rgba(0, 191, 255, 0.5);
+}
+
+a {
+    color: #00bfff;
+}
+
+    a:hover {
+        text-decoration: underline;
+        color: #007bbf;
+    }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: #f0f0f0;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+td {
+    background-color: #444;
+}
+
+/* Estilos para os botões */
+.btn-primary {
+    background-color: #26c4d5;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-back {
+    background-color: #00bfff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #007bbf;
+}
+
+.btn-link {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+    .btn-link:hover {
+        text-decoration: underline;
+    }
+
+/* Estilos para o rodapé (footer) */
+footer {
+    background-color: #1f1f1f;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+    footer a {
+        color: #00bfff;
+    }
+
+        footer a:hover {
+            color: #007bbf;
+        }
+
+/* Estilos para os detalhes */
+.details-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.details-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, #0f707b, #26c4d5);
+    margin: 10px 0;
+}
+
+.details-list {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px 20px;
+    font-size: 16px;
+    color: #495057;
+}
+
+    .details-list dt {
+        font-weight: bold;
+        color: #0f707b;
+    }
+
+    .details-list dd {
+        margin: 0;
+        padding: 5px;
+        background-color: #e9ecef;
+        border-radius: 4px;
+    }
+
+.details-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Estilos para o index */
+.index-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.index-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.index-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.index-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-create {
+    background-color: #26c4d5;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-create:hover {
+        background-color: #0c5e64;
+    }
+
+.index-table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+    .index-table th, .index-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        color: #495057;
+    }
+
+    .index-table th {
+        background-color: #26c4d5;
+        color: #ffffff;
+        text-transform: uppercase;
+    }
+
+    .index-table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+.top-restaurants-list {
+    list-style: none;
+    padding: 0;
+}
+
+    .top-restaurants-list li {
+        background-color: #e9ecef;
+        padding: 8px;
+        margin-bottom: 5px;
+        border-radius: 4px;
+    }
+
+/* Estilos para os bot�es em grupo --- */
+.btn-group {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+    margin: 5px 5px;
+}
+
+.btn-edit {
+    background-color: #26c4d5;
+    padding: 7px 15px;
+    width: 75px;
+    height: 35px;
+}
+
+    .btn-edit:hover {
+        background-color: #0c5e64;
+    }
+
+.btn-details {
+    background-color: #26c4d5;
+}
+
+    .btn-details:hover {
+        background-color: #1fa8bb;
+    }
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+
+/* Estilos gerais da página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #333;
+    color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para o cabeçalho (header) */
+header {
+    background-color: #333;
+    padding: 20px 0;
+    color: white;
+}
+
+    header .navbar-brand {
+        font-size: 2rem;
+        color: white;
+        font-weight: bold;
+    }
+
+    header .navbar-nav .nav-link {
+        color: #00bfff;
+        padding: 10px;
+        text-decoration: none;
+        border: 1px solid #00bfff;
+        border-radius: 5px;
+        margin: 0 5px;
+    }
+
+        header .navbar-nav .nav-link:hover {
+            background-color: #00bfff;
+            color: white;
+        }
+
+
+
+/* Estilos para o campo de pesquisa */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* Estilos para o botão de pesquisa */
+button[type="submit"] {
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+    button[type="submit"]:hover {
+        background-color: #007bbf;
+    }
+
+/* Estilos para o formulário */
+.form-restaurante {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
+    color: #000000;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.modal-dialog {
+    max-width: 600px;
+    margin: 1.75rem auto;
+    color: black;
+}
+
+.modal-content {
+    border-radius: 0.5rem;
+}
+
+.modal-header {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+    background-color: #f7f7f7;
+}
+
+.modal {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header .close {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 10%;
+    padding: 0.5rem;
+}
+
+    .modal-header .close:hover {
+        background-color: darkred;
+        color: white;
+    }
+
+.form-control:focus {
+    border-color: #00bfff;
+    box-shadow: 0 0 0 0.1rem rgba(0, 191, 255, 0.5);
+}
+
+a {
+    color: #00bfff;
+}
+
+    a:hover {
+        text-decoration: underline;
+        color: #007bbf;
+    }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: #f0f0f0;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+td {
+    background-color: #444;
+}
+
+/* Estilos para os botões */
+.btn-primary {
+    background-color: #26c4d5;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-back {
+    background-color: #00bfff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #007bbf;
+}
+
+.btn-link {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+    .btn-link:hover {
+        text-decoration: underline;
+    }
+
+/* Estilos para o rodapé (footer) */
+footer {
+    background-color: #1f1f1f;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+    footer a {
+        color: #00bfff;
+    }
+
+        footer a:hover {
+            color: #007bbf;
+        }
+
+/* Estilos para os detalhes */
+.details-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.details-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, #0f707b, #26c4d5);
+    margin: 10px 0;
+}
+
+.details-list {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px 20px;
+    font-size: 16px;
+    color: #495057;
+}
+
+    .details-list dt {
+        font-weight: bold;
+        color: #0f707b;
+    }
+
+    .details-list dd {
+        margin: 0;
+        padding: 5px;
+        background-color: #e9ecef;
+        border-radius: 4px;
+    }
+
+.details-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Estilos para o index */
+.index-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.index-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.index-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.index-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-create {
+    background-color: #26c4d5;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-create:hover {
+        background-color: #0c5e64;
+    }
+
+.index-table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+    .index-table th, .index-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        color: #495057;
+    }
+
+    .index-table th {
+        background-color: #26c4d5;
+        color: #ffffff;
+        text-transform: uppercase;
+    }
+
+    .index-table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+.top-restaurants-list {
+    list-style: none;
+    padding: 0;
+}
+
+    .top-restaurants-list li {
+        background-color: #e9ecef;
+        padding: 8px;
+        margin-bottom: 5px;
+        border-radius: 4px;
+    }
+
+/* Estilos para os bot�es em grupo --- */
+.btn-group {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+    margin: 5px 5px;
+}
+
+.btn-edit {
+    background-color: #26c4d5;
+    padding: 7px 15px;
+    width: 75px;
+    height: 35px;
+}
+
+    .btn-edit:hover {
+        background-color: #0c5e64;
+    }
+
+.btn-details {
+    background-color: #26c4d5;
+}
+
+    .btn-details:hover {
+        background-color: #1fa8bb;
+    }
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+/* Estilos de responsividade */
+@media (max-width: 768px) {
+    header .navbar-brand {
+        font-size: 1.5rem;
+    }
+
+    .form-restaurante {
+        margin: 15px 0;
+    }
+}
+/* Estilos gerais da página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #333;
+    color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para o cabeçalho (header) */
+header {
+    background-color: #333;
+    padding: 20px 0;
+    color: white;
+}
+
+    header .navbar-brand {
+        font-size: 2rem;
+        color: white;
+        font-weight: bold;
+    }
+
+    header .navbar-nav .nav-link {
+        color: #00bfff;
+        padding: 10px;
+        text-decoration: none;
+        border: 1px solid #00bfff;
+        border-radius: 5px;
+        margin: 0 5px;
+    }
+
+        header .navbar-nav .nav-link:hover {
+            background-color: #00bfff;
+            color: white;
+        }
+
+
+
+/* Estilos para o campo de pesquisa */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* Estilos para o botão de pesquisa */
+button[type="submit"] {
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+    button[type="submit"]:hover {
+        background-color: #007bbf;
+    }
+
+/* Estilos para o formulário */
+.form-restaurante {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
+    color: #000000;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.modal-dialog {
+    max-width: 600px;
+    margin: 1.75rem auto;
+    color: black;
+}
+
+.modal-content {
+    border-radius: 0.5rem;
+}
+
+.modal-header {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+    background-color: #f7f7f7;
+}
+
+.modal {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header .close {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 10%;
+    padding: 0.5rem;
+}
+
+    .modal-header .close:hover {
+        background-color: darkred;
+        color: white;
+    }
+
+.form-control:focus {
+    border-color: #00bfff;
+    box-shadow: 0 0 0 0.1rem rgba(0, 191, 255, 0.5);
+}
+.control-label {
+    color: #000000;
+}
+
+a {
+    color: #00bfff;
+}
+
+    a:hover {
+        text-decoration: underline;
+        color: #007bbf;
+    }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: #f0f0f0;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+td {
+    background-color: #444;
+}
+
+/* Estilos para os botões */
+.btn-primary {
+    background-color: #26c4d5;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-back {
+    background-color: #00bfff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #007bbf;
+}
+
+.btn-link {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+    .btn-link:hover {
+        text-decoration: underline;
+    }
+
+/* Estilos para o rodapé (footer) */
+footer {
+    background-color: #1f1f1f;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+    footer a {
+        color: #00bfff;
+    }
+
+        footer a:hover {
+            color: #007bbf;
+        }
+
+/* Estilos para os detalhes */
+.details-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.details-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, #0f707b, #26c4d5);
+    margin: 10px 0;
+}
+
+.details-list {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px 20px;
+    font-size: 16px;
+    color: #495057;
+}
+
+    .details-list dt {
+        font-weight: bold;
+        color: #0f707b;
+    }
+
+    .details-list dd {
+        margin: 0;
+        padding: 5px;
+        background-color: #e9ecef;
+        border-radius: 4px;
+    }
+
+.details-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Estilos para o index */
+.index-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.index-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.index-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.index-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-create {
+    background-color: #26c4d5;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-create:hover {
+        background-color: #0c5e64;
+    }
+
+.index-table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+    .index-table th, .index-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        color: #495057;
+    }
+
+    .index-table th {
+        background-color: #26c4d5;
+        color: #ffffff;
+        text-transform: uppercase;
+    }
+
+    .index-table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+.top-restaurants-list {
+    list-style: none;
+    padding: 0;
+}
+
+    .top-restaurants-list li {
+        background-color: #e9ecef;
+        padding: 8px;
+        margin-bottom: 5px;
+        border-radius: 4px;
+    }
+
+/* Estilos para os bot�es em grupo --- */
+.btn-group {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+    margin: 5px 5px;
+}
+
+.btn-edit {
+    background-color: #26c4d5;
+    padding: 7px 15px;
+    width: 75px;
+    height: 35px;
+}
+
+    .btn-edit:hover {
+        background-color: #0c5e64;
+    }
+
+.btn-details {
+    background-color: #26c4d5;
+}
+
+    .btn-details:hover {
+        background-color: #1fa8bb;
+    }
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
 
 /* Estilos de responsividade */
 @media (max-width: 768px) {
